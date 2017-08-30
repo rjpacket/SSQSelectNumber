@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SelectBallsView">
+        <attr name="numCount" format="integer"/>
+        <attr name="start" format="integer"/>
+        <attr name="end" format="integer"/>
+        <attr name="hasZero" format="boolean"/>
+        <attr name="ballColor" format="color"/>
+        <attr name="txtSelectedColor" format="color"/>
+        <attr name="txtUnselectedColor" format="color"/>
+        <attr name="drawableSelected" format="reference|integer"/>
+        <attr name="drawableUnselected" format="reference|integer"/>
+    </declare-styleable>
+</resources>

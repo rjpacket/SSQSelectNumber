@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.taovo.rjp.ssqselectnumber.MainActivity"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="显示/隐藏遗漏"
+                android:onClick="showMiss"
+                />
+
+            <com.taovo.rjp.ssqselectnumber.SelectBallsView
+                android:id="@+id/view_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:numCount="10"
+                />
+
+            <com.taovo.rjp.ssqselectnumber.SelectBallsView
+                android:id="@+id/view_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:numCount="9"
+                />
+
+            <com.taovo.rjp.ssqselectnumber.SelectBallsView
+                android:id="@+id/view_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:numCount="8"
+                />
+
+            <com.taovo.rjp.ssqselectnumber.SelectBallsView
+                android:id="@+id/view_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:numCount="7"
+                />
+
+            <com.taovo.rjp.ssqselectnumber.SelectBallsView
+                android:id="@+id/view_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:numCount="6"
+                />
+
+            <com.taovo.rjp.ssqselectnumber.SelectBallsView
+                android:id="@+id/view_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:numCount="5"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
