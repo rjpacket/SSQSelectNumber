@@ -342,4 +342,4 @@ public void showMiss(View view){
     }
 ```
 完事。效果就是一开始的示例效果了。有兴趣可以下载源码下来跑一跑，附上链接
- [GayHub](https://github.com/rjpacket/SSQSelectNumber)
+ [简书](http://www.jianshu.com/p/05690ad251c3)
