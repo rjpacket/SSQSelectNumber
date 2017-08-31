@@ -30,6 +30,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:numCount="10"
+                app:start="0"
+                app:end="9"
+                app:hasZero="false"
+                app:ballColor="#ee00ff"
+                app:txtSelectedColor="#ffffff"
+                app:txtUnselectedColor="#ee00ff"
                 />
 
             <com.taovo.rjp.ssqselectnumber.SelectBallsView
@@ -37,6 +43,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:numCount="9"
+                app:start="1"
+                app:end="33"
+                app:hasZero="true"
+                app:ballColor="#ff0066"
+                app:txtSelectedColor="#ffffff"
+                app:txtUnselectedColor="#ff0066"
                 />
 
             <com.taovo.rjp.ssqselectnumber.SelectBallsView
@@ -44,6 +56,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:numCount="8"
+                app:start="1"
+                app:end="16"
+                app:hasZero="true"
+                app:ballColor="#0088ff"
+                app:txtSelectedColor="#ffffff"
+                app:txtUnselectedColor="#0088ff"
                 />
 
             <com.taovo.rjp.ssqselectnumber.SelectBallsView
@@ -51,6 +69,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:numCount="7"
+                app:start="1"
+                app:end="6"
+                app:hasZero="false"
+                app:ballColor="#00ff26"
+                app:txtSelectedColor="#ffffff"
+                app:txtUnselectedColor="#00ff26"
                 />
 
             <com.taovo.rjp.ssqselectnumber.SelectBallsView
@@ -58,13 +82,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:numCount="6"
+                app:start="1"
+                app:end="6"
+                app:hasZero="false"
+                app:ballColor="#00ff26"
+                app:txtSelectedColor="#ffffff"
+                app:txtUnselectedColor="#00ff26"
+                app:drawableSelected="@mipmap/basketball"
+                app:drawableUnselected="@mipmap/football"
                 />
 
-            <com.taovo.rjp.ssqselectnumber.SelectBallsView
-                android:id="@+id/view_6"
-                android:layout_width="match_parent"
+            <Button
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:numCount="5"
+                android:text="确定"
+                android:onClick="confirm"
                 />
         </LinearLayout>
     </ScrollView>

@@ -57,13 +57,13 @@ public class SelectBallsView extends View {
      */
     private Paint txtPaint;
     /**
-     * 每列球个数 默认7个
+     * 遗漏画笔
      */
     private Paint msPaint;
 
     private List<Ball> balls = new ArrayList<>();
-    private int width;
-    private int height;
+    private int width;      // 选号区宽
+    private int height;     // 选号区高
     /**
      * 球之间的空格
      */
@@ -158,12 +158,10 @@ public class SelectBallsView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
         width = getMeasuredWidth();
         missWidth = ballWidth = ballHeight = (width - (numCount - 1) * space - padding * 2) / numCount;
         missHeight = missWidth / 2;
         computeLocation(ballWidth, ballHeight);
-
         int rows = balls.size() / numCount + ((balls.size() % numCount > 0) ? 1 : 0);
         if (showMissValue) {
             height = rows * (ballHeight + missHeight) + (rows - 1) * space + padding * 2;
@@ -184,13 +182,19 @@ public class SelectBallsView extends View {
         for (int i = 0; i < size; i++) {
             Ball cb = balls.get(i);
             if (showMissValue) {
-                cb.setRect((i % numCount) * ballWidth + i % numCount * space + padding, (i / numCount) * ballHeight + i / numCount * (space + missHeight) + padding,
-                        (i % numCount + 1) * ballWidth + i % numCount * space + padding, (i / numCount + 1) * ballHeight + i / numCount * (space + missHeight) + padding);
-                cb.setMissRect((i % numCount) * ballWidth + i % numCount * space + padding, (i / numCount) * ballHeight + i / numCount * (space + missHeight) + padding + ballHeight,
-                        (i % numCount + 1) * ballWidth + i % numCount * space + padding, (i / numCount + 1) * ballHeight + i / numCount * (space + missHeight) + padding + missHeight);
+                cb.setRect((i % numCount) * ballWidth + i % numCount * space + padding,
+                        (i / numCount) * ballHeight + i / numCount * (space + missHeight) + padding,
+                        (i % numCount + 1) * ballWidth + i % numCount * space + padding,
+                        (i / numCount + 1) * ballHeight + i / numCount * (space + missHeight) + padding);
+                cb.setMissRect((i % numCount) * ballWidth + i % numCount * space + padding,
+                        (i / numCount) * ballHeight + i / numCount * (space + missHeight) + padding + ballHeight,
+                        (i % numCount + 1) * ballWidth + i % numCount * space + padding,
+                        (i / numCount + 1) * ballHeight + i / numCount * (space + missHeight) + padding + missHeight);
             } else {
-                cb.setRect((i % numCount) * ballWidth + i % numCount * space + padding, (i / numCount) * ballHeight + i / numCount * space + padding,
-                        (i % numCount + 1) * ballWidth + i % numCount * space + padding, (i / numCount + 1) * ballHeight + i / numCount * space + padding);
+                cb.setRect((i % numCount) * ballWidth + i % numCount * space + padding,
+                        (i / numCount) * ballHeight + i / numCount * space + padding,
+                        (i % numCount + 1) * ballWidth + i % numCount * space + padding,
+                        (i / numCount + 1) * ballHeight + i / numCount * space + padding);
             }
         }
     }
@@ -203,14 +207,20 @@ public class SelectBallsView extends View {
             Ball cb = balls.get(i);
             RectF rectF = new RectF(cb.getLeft(), cb.getTop(), cb.getRight(), cb.getBottom());
             if (bitmapSelected != null || bitmapUnselected != null) {
-                canvas.drawBitmap(cb.isSelected() ? bitmapSelected : bitmapUnselected, null, new Rect(cb.getLeft(), cb.getTop(), cb.getRight(), cb.getBottom()), ballPaint);
+                //绘制图片
+                canvas.drawBitmap(cb.isSelected() ? bitmapSelected : bitmapUnselected, null,
+                        new Rect(cb.getLeft(), cb.getTop(), cb.getRight(), cb.getBottom()), ballPaint);
             } else {
-                canvas.drawArc(new RectF(cb.getLeft() - strokeWidth, cb.getTop() - strokeWidth, cb.getRight() + strokeWidth, cb.getBottom() + strokeWidth), 0, 360, false, circlePaint);
+                //绘制小球边框和小球
+                canvas.drawArc(new RectF(cb.getLeft() - strokeWidth, cb.getTop() - strokeWidth,
+                        cb.getRight() + strokeWidth, cb.getBottom() + strokeWidth), 0, 360, false, circlePaint);
                 ballPaint.setColor(cb.isSelected() ? ballColor : Color.WHITE);
                 canvas.drawOval(rectF, ballPaint);
             }
+            //绘制文字
             txtPaint.setColor(cb.isSelected() ? txtSelectedColor : txtUnselectedColor);
             canvas.drawText(cb.getNumber(), rectF.centerX(), rectF.centerY() - txtMidValue, txtPaint);
+            //绘制遗漏
             if (showMissValue) {
                 msPaint.setColor(cb.getMissValueColor());
                 RectF missRectF = new RectF(cb.getmLeft(), cb.getmTop(), cb.getmRight(), cb.getmBottom());
@@ -303,5 +313,35 @@ public class SelectBallsView extends View {
     public int dp2px(Context context, float dpValue) {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    /**
+     * 获取选中球的号码
+     * @return
+     */
+    public String getSelectBallsString(){
+        StringBuilder sb = new StringBuilder();
+        List<Ball> selectBalls = getSelectBalls();
+        for (Ball selectBall : selectBalls) {
+            sb.append(selectBall.getNumber() + ",");
+        }
+        if(sb.length() > 0) {
+            return sb.substring(0, sb.length() - 1);
+        }
+        return "";
+    }
+
+    /**
+     * 获取选中的球
+     * @return
+     */
+    public List<Ball> getSelectBalls(){
+        List<Ball> selectBalls = new ArrayList<>();
+        for (Ball ball : balls) {
+            if(ball.isSelected()){
+                selectBalls.add(ball);
+            }
+        }
+        return selectBalls;
     }
 }

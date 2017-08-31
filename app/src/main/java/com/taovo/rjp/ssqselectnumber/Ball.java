@@ -8,22 +8,22 @@ import android.graphics.Color;
  */
 
 public class Ball {
-    private String number;
-    private boolean isSelected;
-    private int left;
-    private int top;
-    private int right;
-    private int bottom;
+    private String number;                      // 号码
+    private boolean isSelected;                 // 是否选中
+    private int left;                           // 球左坐标
+    private int top;                            // 球上坐标
+    private int right;                          // 球右坐标
+    private int bottom;                         // 球下坐标
 
-    private float x;
-    private float y;
+    private float x;                            // 球圆心x
+    private float y;                            // 球圆心y
 
-    private int mLeft;
-    private int mTop;
-    private int mRight;
-    private int mBottom;
-    private String missValue = "8";
-    private int missValueColor = Color.RED;
+    private int mLeft;                          // 遗漏左坐标
+    private int mTop;                           // 遗漏上坐标
+    private int mRight;                         // 遗漏右坐标
+    private int mBottom;                        // 遗漏下坐标
+    private String missValue = "8";             // 遗漏值
+    private int missValueColor = Color.RED;     // 遗漏文字颜色
 
     public String getNumber() {
         return number;
@@ -105,6 +105,13 @@ public class Ball {
         this.missValueColor = missValueColor;
     }
 
+    /**
+     * 设置球的位置
+     * @param left
+     * @param top
+     * @param right
+     * @param bottom
+     */
     public void setRect(int left, int top, int right, int bottom) {
         this.left = left;
         this.top = top;
@@ -117,11 +124,18 @@ public class Ball {
         this.y = y;
     }
 
+    /**
+     * 设置遗漏的位置
+     * @param left
+     * @param top
+     * @param right
+     * @param bottom
+     */
     public void setMissRect(int left, int top, int right, int bottom) {
-        setmLeft(left);
-        setmTop(top);
-        setmRight(right);
-        setmBottom(bottom);
+        this.mLeft = left;
+        this.mTop = top;
+        this.mRight = right;
+        this.mBottom = bottom;
     }
 
     public int getmLeft() {
